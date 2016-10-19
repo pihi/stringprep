@@ -6,9 +6,6 @@
     <title>$title$</title>
     <authors>P. Isaac Hildebrandt</authors>
     <owners>PIHI Media, Ltd. Co.</owners>
-    <licenseUrl></licenseUrl>
-    <projectUrl></projectUrl>
-    <iconUrl></iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes></releaseNotes>
