@@ -6,15 +6,13 @@ namespace StringPrep
 {
   internal class ValueRangeTableBuilder : IValueRangeTableBuilder
   {
-    private readonly int[][] _baseTables;
+    private readonly IList<int[]> _baseTables;
     private readonly IList<int> _inclusions;
     private readonly IList<int> _removals;
 
-    public ValueRangeTableBuilder(int[][] baseTables)
+    public ValueRangeTableBuilder(params int[][] baseTables)
     {
-      if (!baseTables.Any()) throw new ArgumentException("At least one base table must be provided", nameof(baseTables));
-
-      _baseTables = baseTables;
+      _baseTables = baseTables.ToList();
       _inclusions = new List<int>();
       _removals = new List<int>();
     }
@@ -47,7 +45,8 @@ namespace StringPrep
 
     public IValueRangeTable Compile()
     {
-      var ranges = ValueRangeCompiler.Compile(_baseTables, _inclusions.ToArray(), _removals.ToArray());
+      if (!_baseTables.Any()) throw new InvalidOperationException("At least one base table must be provided");
+      var ranges = ValueRangeCompiler.Compile(_baseTables.ToArray(), _inclusions.ToArray(), _removals.ToArray());
       return new ValueRangeTable(ranges);
     }
   }

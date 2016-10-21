@@ -43,6 +43,8 @@
     <Compile Include="Bidirectional.cs" />
     <Compile Include="BidirectionalFormatException.cs" />
     <Compile Include="BidirectionalStep.cs" />
+    <Compile Include="CompositeMappingTable.cs" />
+    <Compile Include="DictionaryMappingTable.cs" />
     <Compile Include="IMappingTable.cs" />
     <Compile Include="IMappingTableBuilder.cs" />
     <Compile Include="IPreparationProcess.cs" />
@@ -68,6 +70,7 @@
     </Compile>
     <Compile Include="Unassigned.cs" />
     <Compile Include="ValueRangeCompiler.cs" />
+    <Compile Include="ValueRangeMappingTable.cs" />
     <Compile Include="ValueRangeTable.cs" />
     <Compile Include="ValueRangeTableBuilder.cs" />
   </ItemGroup>

@@ -9,16 +9,6 @@ namespace StringPrep
       return DoRemove(DoInclude(DoCombine(baseTables), inclusions), removals);
     }
 
-    public static IDictionary<int, int[]> GetMappingsFromValueRange(int[] valueTable, int[] replacement)
-    {
-      var dict = new SortedDictionary<int, int[]>();
-      foreach (var value in valueTable)
-      {
-        dict.Add(value, replacement);
-      }
-      return dict;
-    }
-
     private static IDictionary<int, int[]> DoRemove(IDictionary<int, int[]> dict, int[] removals)
     {
       foreach (var key in removals)
@@ -44,7 +34,7 @@ namespace StringPrep
 
     private static IDictionary<int, int[]> DoCombine(IDictionary<int, int[]>[] baseTables)
     {
-      if (baseTables.Length == 1) return new SortedDictionary<int, int[]>(baseTables[0]);
+      if (baseTables.Length == 0) return new SortedDictionary<int, int[]>();
 
       var combined = new SortedDictionary<int, int[]>(baseTables[0]);
       for (var i = 1; i < baseTables.Length; i++)

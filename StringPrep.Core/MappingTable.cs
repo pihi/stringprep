@@ -2,7 +2,7 @@
 
 namespace StringPrep
 {
-  public class MappingTable : IMappingTable
+  public abstract class MappingTable : IMappingTable
   {
     public static IMappingTable Create(int[] valueTable, int replacement)
     {
@@ -27,7 +27,7 @@ namespace StringPrep
 
     public static IMappingTableBuilder Build(int[] valueTable, int[] replacement)
     {
-      return Build(MappingTableCompiler.GetMappingsFromValueRange(valueTable, replacement));
+      return Build().WithValueRangeTable(valueTable, replacement);
     }
 
     public static IMappingTableBuilder Build(params IDictionary<int, int[]>[] baseTables)
@@ -35,21 +35,7 @@ namespace StringPrep
       return new MappingTableBuilder(baseTables);
     }
 
-    private readonly SortedList<int, int[]> _mappings;
-
-    internal MappingTable(IDictionary<int, int[]> values)
-    {
-      _mappings = new SortedList<int, int[]>(values);
-    }
-
-    public bool HasReplacement(int value)
-    {
-      return _mappings.ContainsKey(value);
-    }
-
-    public int[] GetReplacement(int value)
-    {
-      return _mappings[value];
-    }
+    public abstract bool HasReplacement(int value);
+    public abstract int[] GetReplacement(int value);
   }
 }
